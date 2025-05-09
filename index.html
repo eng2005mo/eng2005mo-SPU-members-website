@@ -352,9 +352,15 @@
               <p class="text-lg text-[#d1d1d1] mb-2">وجودك بيننا هو الخطوة الأولى نحو إنجازات كبيرة!</p>
               <p class="text-lg text-[#d1d1d1] mb-2">هذه المنصة صُممت خصيصًا لتكون مركز تواصلك، مهامك، وعملك الإبداعي داخل الاتحاد.</p>
               <p class="text-lg text-[#d1d1d1] mb-4">أنجز مهامك واترك بصمتك واضحة بين طلاب البوليتكنك! ✅</p>
-              <a href="https://github.com/eng2005mo/eng2005mo-SPU-members-website/raw/main/SPU_Intro_Form.pdf" target="_blank" class="text-[#d1d1d1] hover:text-white transition underline">تحميل نموذج تعريفي SPU</a>
             </div>
             <p class="text-xl text-[#d1d1d1] max-w-2xl mx-auto mt-6">موقع مخصص لأعضاء اتحاد سنافر البوليتكنك 🧩</p>
+            <div class="mt-8">
+              <div class="content-card bg-[#ffffff]/5 p-6 rounded-xl max-w-xl mx-auto hover:bg-[#ffffff]/10 transition">
+                <a href="https://www.mediafire.com/file/rkttnmki1sbf6q8/%D9%86%D9%85%D9%88%D8%AF%D8%AC_%D8%AA%D8%B9%D8%B1%D9%8A%D9%81%D9%8ASPU.pdf/file" target="_blank" class="text-[#d1d1d1] hover:text-white transition underline block text-center">
+                  تحميل نموذج تعريفي SPU
+                </a>
+              </div>
+            </div>
           </div>
           <div class="bg-[#ffffff]/10 rounded-2xl p-8 max-w-4xl mx-auto content-card mt-12">
             <h3 class="section-title text-2xl font-bold text-white mb-6">الهيكل الإداري</h3>
@@ -695,6 +701,9 @@
         console.log('Showing section on load:', section);
         showSection(section);
       }
+      loadXLSXLibrary().then(() => {
+        console.log('XLSX library loaded or skipped');
+      });
     });
 
     function logout() {
@@ -770,6 +779,11 @@
     initParticles();
     animateParticles();
 
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
     function showSection(sectionId) {
       console.log('Attempting to show section:', sectionId);
       document.querySelectorAll('section').forEach(section => {
@@ -805,12 +819,6 @@
       input.addEventListener('input', () => {
         document.getElementById('memberIdError').classList.remove('active');
         document.getElementById('passwordError').classList.remove('active');
-      });
-    });
-
-    window.addEventListener('load', () => {
-      loadXLSXLibrary().then(() => {
-        console.log('XLSX library loaded or skipped');
       });
     });
 
