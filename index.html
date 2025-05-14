@@ -614,7 +614,7 @@
       { member_id: 3, name: 'م. مالك الجعبري', password: CryptoJS.SHA256('SPU25').toString() },
       { member_id: 4, name: 'م. أسامة القريوتي', password: CryptoJS.SHA256('SPU25').toString() },
       { member_id: 5, name: 'شهد الكفاوين', password: CryptoJS.SHA256('SPU25').toString() },
-      { member_id: 6, name: 'محمد علي🧸', password: CryptoJS.SHA256('SPU25').toString() },
+      { member_id: 6, name: 'محمد علي 🧸', password: CryptoJS.SHA256('SPU25').toString() },
       { member_id: 7, name: 'مصطفى زايد', password: CryptoJS.SHA256('SPU25').toString() },
       { member_id: 8, name: 'دانيه النادي', password: CryptoJS.SHA256('SPU25').toString() },
       { member_id: 9, name: 'م. ميسم صلاحات', password: CryptoJS.SHA256('SPU25').toString() },
@@ -681,6 +681,13 @@
 
       sessionStorage.setItem('isLoggedIn', 'true');
       sessionStorage.setItem('memberName', member.name);
+
+      // إرسال معلومات العضو إلى Google Analytics
+      gtag('event', 'login', {
+        method: 'custom_login',
+        member_id: member.member_id,
+        member_name: member.name
+      });
       document.getElementById('loginSection').classList.add('hidden');
       document.getElementById('mainSite').classList.remove('hidden');
       welcomeMessage.textContent = `أهلاً ${member.name}`;
