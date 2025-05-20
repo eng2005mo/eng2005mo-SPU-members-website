@@ -683,10 +683,16 @@
       sessionStorage.setItem('memberName', member.name);
 
       // إرسال معلومات العضو إلى Google Analytics
-      gtag('event', 'login', {
-        method: 'custom_login',
-        member_id: member.member_id,
-        member_name: member.name
+      // إرسال user_id لتتبع العضو داخل GA
+      gtag('config', 'G-Q038PEDFTB', {
+        'user_id': member.member_id.toString()
+      });
+
+      // إرسال حدث login مخصص
+      gtag('event', 'login_success', {
+        event_category: 'authentication',
+        event_label: member.name,
+        value: member.member_id
       });
       document.getElementById('loginSection').classList.add('hidden');
       document.getElementById('mainSite').classList.remove('hidden');
